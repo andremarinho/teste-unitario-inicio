@@ -9,7 +9,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.Date;
 
 import org.hamcrest.CoreMatchers;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -22,11 +25,22 @@ import br.ce.wcaquino.utils.DataUtils;
 
 public class LocacaoServiceTest {
 
+	private LocacaoService locacaoService;
+	
+	
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
 	
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
+	
+	@Before
+	public void setup(){
+		this.locacaoService = new LocacaoService();
+		
+	}
+	
+	
 	
 	
 	@Test
@@ -41,7 +55,7 @@ public class LocacaoServiceTest {
 		//Cenario
 		Usuario usuario = new Usuario();
 		Filme filme = new Filme();
-		LocacaoService locacaoService = new LocacaoService();
+		
 		
 		usuario.setNome("José da Silva");
 		filme.setNome("E o vento levou");
@@ -75,13 +89,15 @@ public class LocacaoServiceTest {
 		
 		
 	}
+	
+	
 	//Forma elegante
 	@Test(expected=Exception.class)
 	public void testLocacao_filmeSemEstoque() throws Exception{
 		//Cenario
 				Usuario usuario = new Usuario();
 				Filme filme = new Filme();
-				LocacaoService locacaoService = new LocacaoService();
+				
 				
 				usuario.setNome("José da Silva");
 				filme.setNome("E o vento levou");
@@ -100,7 +116,7 @@ public class LocacaoServiceTest {
 		//Cenario
 				Usuario usuario = new Usuario();
 				Filme filme = new Filme();
-				LocacaoService locacaoService = new LocacaoService();
+				
 				
 				usuario.setNome("José da Silva");
 				filme.setNome("E o vento levou");
@@ -126,7 +142,7 @@ public class LocacaoServiceTest {
 			//Cenario
 					Usuario usuario = new Usuario();
 					Filme filme = new Filme();
-					LocacaoService locacaoService = new LocacaoService();
+					
 					
 					usuario.setNome("José da Silva");
 					filme.setNome("E o vento levou");
