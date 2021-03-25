@@ -6,6 +6,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.hamcrest.CoreMatchers;
@@ -65,7 +66,7 @@ public class LocacaoServiceTest {
 		//Acao
 		Locacao locacao;
 		
-			locacao = locacaoService.alugarFilme(usuario, filme);
+			locacao = locacaoService.alugarFilme(usuario, Arrays.asList(filme));
 			
 			//Verificacao
 			if(locacao != null){
@@ -107,7 +108,7 @@ public class LocacaoServiceTest {
 				//Acao
 				Locacao locacao;
 				
-					locacao = locacaoService.alugarFilme(usuario, filme);
+					locacao = locacaoService.alugarFilme(usuario, Arrays.asList(filme));
 	}
 	
 	//Forma Robusta
@@ -127,7 +128,7 @@ public class LocacaoServiceTest {
 				Locacao locacao;
 				
 					try {
-						locacao = locacaoService.alugarFilme(usuario, filme);
+						locacao = locacaoService.alugarFilme(usuario, Arrays.asList(filme));
 						Assert.fail("teste");
 						
 					} catch (Exception e) {
@@ -152,7 +153,7 @@ public class LocacaoServiceTest {
 					//Acao
 					Locacao locacao;
 					
-						locacao = locacaoService.alugarFilme(usuario, filme);
+						locacao = locacaoService.alugarFilme(usuario, Arrays.asList(filme));
 						exception.expect(Exception.class);
 						exception.expectMessage("Filme sem estoque");
 		}
