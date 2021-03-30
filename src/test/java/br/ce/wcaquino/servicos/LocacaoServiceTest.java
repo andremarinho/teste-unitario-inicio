@@ -157,4 +157,77 @@ public class LocacaoServiceTest {
 						exception.expect(Exception.class);
 						exception.expectMessage("Filme sem estoque");
 		}
+		
+		@Test
+		public void devo_pagar_75pcento_descconto_terceiro_filme() throws Exception{
+			
+			//Cenario
+			Usuario usuario = new Usuario();
+			usuario.setNome("José da Silva");
+			
+			//Acao
+			Locacao locacao;
+			locacao = locacaoService.alugarFilme(usuario,
+					Arrays.asList(new Filme("Filme1", 1, 4.0),
+							new Filme("Filme2", 1, 4.0), new Filme("Filme3", 1, 4.0)));
+			
+			assertThat(locacao.getValor(), is(11d));
+					
+		}
+		
+		
+		@Test
+		public void devo_pagar_50pcento_descconto__quarto_filme() throws Exception{
+			
+			//Cenario
+			Usuario usuario = new Usuario();
+			usuario.setNome("José da Silva");
+			
+			//Acao
+			Locacao locacao;
+			locacao = locacaoService.alugarFilme(usuario,
+					Arrays.asList(new Filme("Filme1", 1, 4.0),
+							new Filme("Filme2", 1, 4.0), new Filme("Filme3", 1, 4.0),
+							new Filme("Filme4", 1, 4.0)	));
+			//4+4+3+2=13
+			assertThat(locacao.getValor(), is(13d));
+					
+		}
+		
+		@Test
+		public void devo_pagar_25pcento_descconto__quinto_filme() throws Exception{
+			
+			//Cenario
+			Usuario usuario = new Usuario();
+			usuario.setNome("José da Silva");
+			
+			//Acao
+			Locacao locacao;
+			locacao = locacaoService.alugarFilme(usuario,
+					Arrays.asList(new Filme("Filme1", 1, 4.0),
+							new Filme("Filme2", 1, 4.0), new Filme("Filme3", 1, 4.0),
+							new Filme("Filme4", 1, 4.0), new Filme("Filme5", 1, 4.0)	));
+			//4+4+3+2+1=13
+			assertThat(locacao.getValor(), is(14d));
+					
+		}
+		
+		@Test
+		public void devo_pagar_100pcento_descconto__sexto_filme() throws Exception{
+			
+			//Cenario
+			Usuario usuario = new Usuario();
+			usuario.setNome("José da Silva");
+			
+			//Acao
+			Locacao locacao;
+			locacao = locacaoService.alugarFilme(usuario,
+					Arrays.asList(new Filme("Filme1", 1, 4.0),
+							new Filme("Filme2", 1, 4.0), new Filme("Filme3", 1, 4.0),
+							new Filme("Filme4", 1, 4.0), new Filme("Filme5", 1, 4.0),
+							new Filme("Filme6", 1, 4.0)));
+			//4+4+3+2+1+0=13
+			assertThat(locacao.getValor(), is(14d));
+					
+		}
 }

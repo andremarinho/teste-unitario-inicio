@@ -19,11 +19,24 @@ public class LocacaoService {
 	public Locacao alugarFilme(Usuario usuario, List<Filme> filmes) throws Exception {
 		
 		double valorLocacao = 0;
-		for(Filme filme: filmes){
-			valorLocacao += filme.getPrecoLocacao();
-			if(filme.getEstoque() == 0){
+		for(int i = 0 ; i < filmes.size(); i++){
+			
+			if(filmes.get(i).getEstoque() == 0){
 				throw new Exception("Filme sem estoque");
 			}
+			
+			if(i == 2){
+				valorLocacao += filmes.get(i).getPrecoLocacao() * 0.75;
+			} else if (i == 3){
+				valorLocacao += filmes.get(i).getPrecoLocacao() * 0.5;
+			} else if (i == 4){
+				valorLocacao += filmes.get(i).getPrecoLocacao() * 0.25;
+			} else if (i == 5){
+				valorLocacao += 0;
+			}else{
+				valorLocacao += filmes.get(i).getPrecoLocacao();
+			}
+			
 		}
 		
 		
